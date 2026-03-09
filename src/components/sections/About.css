@@ -1,0 +1,143 @@
+#about {
+    margin: auto;
+    min-height: 100vh;
+    color: var(--main-fonts-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 80px;
+}
+
+#about .filter {
+    background: none;
+    background-size: none;
+    background-position: center;
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    z-index: 0;
+}
+
+.cursos_contenedor .title {
+    margin-top: 50px !important;
+}
+
+.cursos_grid {
+    display: flex;
+    gap: 15px;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.cursos_contenedor img {
+    width: 100px;
+    height: auto;
+}
+
+.cursos_contenedor_int {
+    background: var(--main-decor-color);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 169, 226, 0.5);
+    transition: all 0.3s ease;
+    max-width: 200px;
+    text-align: center;
+}
+
+.cursos_contenedor_int:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 169, 226, 0.8);
+}
+
+.cursos_contenedor_int div {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.cursos_contenedor_int p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #000;
+    font-weight: 600;
+}
+
+.amazon_img {
+    width: 180px !important;
+}
+
+.conocimientos_int {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+
+.conocimientos_int .marquee {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    animation: marquee 20s linear infinite;
+    flex-wrap: wrap;
+}
+
+.conocimientos_int .marquee img {
+    width: 75px;
+    height: auto;
+    padding: 0px 10px;
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+}
+
+.conocimientos_int .marquee img:hover {
+    filter: brightness(1.2);
+}
+
+.conocimientos_contenedor {
+    margin-top: 100px;
+    width: 100%;
+}
+
+.title h4 {
+    text-align: center;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(100px);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .cursos_grid {
+        gap: 10px;
+    }
+
+    .cursos_contenedor_int {
+        max-width: 150px;
+    }
+
+    .conocimientos_int .marquee {
+        gap: 15px;
+    }
+
+    .conocimientos_int .marquee img {
+        width: 50px;
+    }
+}

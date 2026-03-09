@@ -1,0 +1,154 @@
+#projects {
+    margin-top: 50px;
+    min-height: 100vh;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--main-fonts-color);
+}
+
+#projects h3 {
+    position: relative;
+    z-index: 1;
+}
+
+#projects p {
+    font-family: var(--main-font-family);
+    font-size: 1.2rem;
+    padding: 10px;
+    max-width: 800px;
+    position: relative;
+    z-index: 1;
+}
+
+.work-box {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.work {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    width: 200px;
+    height: 250px;
+    border-radius: 12px;
+    box-shadow: 0 0 0 gray;
+    background: var(--primary-color, var(--main-decor-color));
+    transition: box-shadow 0.7s !important;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.card .work-content {
+    text-align: center;
+    padding: 10px 5px;
+    font-size: 1rem;
+    color: var(--main-fonts-color);
+    font-family: var(--main-font-family);
+    cursor: pointer;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card a {
+    text-decoration: none;
+}
+
+.card .work-content:hover {
+    color: #202020;
+}
+
+.card .work-content p {
+    font-size: 0.85rem;
+    margin: 5px 0;
+}
+
+.card:hover {
+    box-shadow: 0 0 1.5rem rgba(0, 169, 226, 0.6);
+    transition: box-shadow 0.7s !important;
+    transform: translateY(-10px);
+}
+
+.card figcaption div {
+    font-weight: 800;
+}
+
+.card figcaption .c4-fade-up button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: var(--main-decor-color);
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.card figcaption .c4-fade-up button:hover,
+.card button:hover {
+    box-shadow: 0 0 1.5rem white;
+    scale: 110%;
+    cursor: pointer;
+}
+
+.card button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: var(--main-decor-color);
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.card button:hover {
+    box-shadow: 0 0 1.5rem white;
+    scale: 110%;
+}
+
+@media only screen and (max-width: 999px) and (min-width: 500px) {
+    .work {
+        flex-wrap: wrap;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    #projects {
+        overflow-x: hidden;
+    }
+
+    .work {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 300px;
+    }
+}

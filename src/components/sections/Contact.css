@@ -1,0 +1,58 @@
+#contact {
+    margin: auto;
+    min-height: 600px;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--main-fonts-color);
+}
+
+#contact p {
+    padding: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-family: var(--main-font-family);
+}
+
+.social-media {
+    padding: 10px;
+    display: flex;
+    position: center;
+    align-items: space-around;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.social-media a {
+    margin: 10px;
+    font-size: 2rem;
+    text-align: center;
+    display: inline-block;
+    color: var(--main-fonts-color);
+    transition: all 0.3s ease;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 169, 226, 0.1);
+    border: 2px solid var(--main-decor-color);
+}
+
+.social-media a i {
+    cursor: pointer;
+}
+
+.social-media a:hover {
+    color: var(--main-decor-color);
+    text-shadow: 0 0 50px var(--main-decor-color);
+    transition: all 0.3s ease;
+    background: rgba(0, 169, 226, 0.3);
+    transform: scale(1.2);
+    box-shadow: 0 0 30px var(--main-decor-color);
+}
