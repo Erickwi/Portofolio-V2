@@ -1,12 +1,5 @@
 /* Import component styles */
-@import url('./components/Header.css');
 @import url('./components/Footer.css');
-@import url('./components/sections/Hero.css');
-@import url('./components/sections/About.css');
-@import url('./components/sections/Habilities.css');
-@import url('./components/sections/Experience.css');
-@import url('./components/sections/Projects.css');
-@import url('./components/sections/Contact.css');
 
 /* Global Styles */
 .App {
