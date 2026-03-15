@@ -25,15 +25,18 @@ export function ProjectsPanel({ projects, accentColor = "#00a9e2" }: Props) {
 
             return (
               <section
+                id="experience"
                 style={{
                   height: "100vh",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "flex-start",
-                  paddingTop: "clamp(160px, 10vh, 120px)",
+                  /* top padding so the section appears lower when navigated to */
+                  padding: "clamp(180px, 18vh, 260px) clamp(16px, 4vw, 48px) 0",
+                  /* ensure anchor-scroll positions this section below sticky header */
+                  scrollMarginTop: "clamp(180px, 18vh, 260px)",
                   maxWidth: 1080,
                   margin: "0 auto",
-                  padding: "0 clamp(16px, 4vw, 48px)",
                 }}>
                 <p
                   style={{
