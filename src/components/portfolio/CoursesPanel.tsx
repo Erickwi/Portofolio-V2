@@ -1,48 +1,13 @@
-import { useState, useEffect, lazy, memo, Suspense } from "react";
+import { lazy, memo, Suspense } from "react";
+import { useIsMobile } from "../../hooks/useBreakpoint";
+import { courses } from "../../data/courses";
 
 const Scene = lazy(() =>
   import("react-kino").then((m) => ({ default: m.Scene }))
 );
 
-import incibe from "../../assets/INCIBE.png";
-import logoUA from "../../assets/logo-ua.jpg";
-import logoUCM from "../../assets/logo_ucm.png";
-import cisco from "../../assets/Cisco_Systems.png";
-import platzi from "../../assets/Platzi_Logo.webp";
-import logoAcademia from "../../assets/Logo-Academia.png";
-import alaimo from "../../assets/Alaimo Labs.png";
-import hplife from "../../assets/hplife.png";
-import awsEducate from "../../assets/aws_educate.png";
-
-interface Course {
-  title: string;
-  img: string;
-  desc?: string;
-}
-
-const courses: Course[] = [
-  { title: "Ciberseguridad en el Teletrabajo", img: incibe },
-  { title: "Introducción al Desarrollo Web I", img: logoUA },
-  { title: "Desarrollo de Apps Móviles", img: logoUCM },
-  { title: "Networking Essentials (Cisco)", img: cisco },
-  { title: "Taller de Ciberseguridad", img: platzi },
-  { title: "Pentesting con Metasploit", img: platzi },
-  { title: "Curso de Vite.js", img: platzi },
-  { title: "Agilidad y Scrum", img: logoAcademia },
-  { title: "Fundamentos de Scrum", img: alaimo },
-  { title: "HP LIFE - IA para principiantes", img: hplife },
-  { title: "Amazon Educate - Introducción a la Nube 101", img: awsEducate },
-];
-
 export const CoursesPanel = memo(function CoursesPanel() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -62,7 +27,6 @@ export const CoursesPanel = memo(function CoursesPanel() {
                     padding: "40px clamp(8px, 4vw, 48px)",
                     overflowX: "hidden",
                     boxSizing: "border-box",
-                    /* ensure anchor-scroll positions this section below sticky header */
                     scrollMarginTop: "clamp(140px, 14vh, 220px)",
                   }}>
                   <div style={{ textAlign: "center", marginBottom: 18 }}>
