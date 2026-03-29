@@ -1,8 +1,11 @@
-# React + TypeScript + Vite
+# Portafolio Erick Ramírez
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portafolio personal desarrollado con React, TypeScript y Vite.
 
-Currently, two official plugins are available:
+## Tecnologias
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19** - Libreria UI
+- **TypeScript** - Tipado estatico
+- **Vite 7** - Build tool
+- **react-kino** - Animaciones y efectos de scroll
+- **vite-plugin-imagemin** - Optimizacion automatica de imagenes
