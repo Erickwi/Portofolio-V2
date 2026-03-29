@@ -1,4 +1,8 @@
-import { Marquee } from "react-kino";
+import { lazy, memo, Suspense } from "react";
+
+const Marquee = lazy(() =>
+  import("react-kino").then((m) => ({ default: m.Marquee }))
+);
 
 import reactIcon from "../../assets/react.png";
 import cPlusIcon from "../../assets/c++_logo_icon.png";
@@ -24,7 +28,7 @@ interface Props {
   height?: number;
 }
 
-export function TechMarquee({ icons, height = 56 }: Props) {
+export const TechMarquee = memo(function TechMarquee({ icons, height = 56 }: Props) {
   const defaultIcons = icons ?? [
     reactIcon,
     cPlusIcon,
@@ -67,28 +71,30 @@ export function TechMarquee({ icons, height = 56 }: Props) {
           Conocimientos
         </h4>
       </div>
-      <Marquee speed={40}>
-        {defaultIcons.map((src, i) => (
-          <img
-            key={i}
-            src={src}
-            alt={`tech-${i}`}
-            style={{
-              height,
-              width: "auto",
-              marginRight: 18,
-              display: "inline-block",
-              filter: "grayscale(0)",
-            }}
-            onError={(e) => {
-              const el = e.currentTarget as HTMLImageElement;
-              el.style.display = "none";
-            }}
-          />
-        ))}
-      </Marquee>
+      <Suspense fallback={<div style={{ height: 56 }} />}>
+        <Marquee speed={40}>
+          {defaultIcons.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt={`tech-${i}`}
+              style={{
+                height,
+                width: "auto",
+                marginRight: 18,
+                display: "inline-block",
+                filter: "grayscale(0)",
+              }}
+              onError={(e) => {
+                const el = e.currentTarget as HTMLImageElement;
+                el.style.display = "none";
+              }}
+            />
+          ))}
+        </Marquee>
+      </Suspense>
     </div>
   );
-}
+});
 
 export default TechMarquee;

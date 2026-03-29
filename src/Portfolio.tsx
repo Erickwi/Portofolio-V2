@@ -1,10 +1,10 @@
 import { type CSSProperties } from "react";
 import { Scene, TextReveal, Progress, StickyHeader } from "react-kino";
-import HeroPanel from "./components/portfolio/HeroPanel";
-import ProjectsPanel from "./components/portfolio/ProjectsPanel";
+import { HeroPanel } from "./components/portfolio/HeroPanel";
+import { ProjectsPanel } from "./components/portfolio/ProjectsPanel";
 import SkillsPanel from "./components/portfolio/SkillsPanel";
-import TechMarquee from "./components/portfolio/TechMarquee";
-import CoursesPanel from "./components/portfolio/CoursesPanel";
+import { TechMarquee } from "./components/portfolio/TechMarquee";
+import { CoursesPanel } from "./components/portfolio/CoursesPanel";
 import ContactPanel from "./components/portfolio/ContactPanel";
 
 interface PortfolioProps {
