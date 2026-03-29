@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Scene } from "react-kino";
 
 import incibe from "../../assets/INCIBE.png";
@@ -31,6 +32,15 @@ const courses: Course[] = [
 ];
 
 export function CoursesPanel() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <>
       {courses.length > 0 && (
@@ -45,7 +55,9 @@ export function CoursesPanel() {
                 style={{
                   maxWidth: 1080,
                   margin: "48px auto 0",
-                  padding: "40px clamp(16px, 4vw, 48px)",
+                  padding: "40px clamp(8px, 4vw, 48px)",
+                  overflowX: "hidden",
+                  boxSizing: "border-box",
                   /* ensure anchor-scroll positions this section below sticky header */
                   scrollMarginTop: "clamp(140px, 14vh, 220px)",
                 }}>
@@ -56,9 +68,9 @@ export function CoursesPanel() {
                 <div
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-                    gap: 20,
-                    alignItems: "start",
+                    gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(auto-fit, minmax(220px, 1fr))",
+                    gap: isMobile ? 6 : 20,
+                    alignItems: "stretch",
                   }}>
                   {courses.map((c, i) => {
                     const visible = i <= active;
@@ -68,25 +80,23 @@ export function CoursesPanel() {
                         style={{
                           background: "rgba(255,255,255,0.05)",
                           border: "1px solid rgba(255,255,255,0.12)",
-                          padding: 16,
                           borderRadius: 10,
-                          minHeight: 160,
+                          minHeight: isMobile ? 80 : 160,
+                          padding: isMobile ? 8 : 16,
                           boxShadow: i === active ? `0 8px 30px rgba(0,0,0,0.6)` : "none",
                           transform: visible ? "none" : "translateY(18px)",
                           transition: "all 0.45s ease",
                           opacity: visible ? 1 : 0,
                           pointerEvents: visible ? undefined : "none",
                         }}>
-                        <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+                        <div style={{ display: "flex", gap: isMobile ? 6 : 12, alignItems: "center", justifyContent: "center", flexDirection: isMobile ? "column" : "row", height: "100%" }}>
                           <img
                             src={c.img}
                             alt={c.title}
                             loading="lazy"
-                            style={{ width: 64, height: 64, objectFit: "contain", borderRadius: 8 }}
+                            style={{ width: isMobile ? 40 : 64, height: isMobile ? 40 : 64, objectFit: "contain", borderRadius: 8 }}
                           />
-                          <div>
-                            <h4 style={{ margin: 0, fontSize: "1rem", color: "#ffffff" }}>{c.title}</h4>
-                          </div>
+                          <h4 style={{ margin: 0, fontSize: isMobile ? "0.75rem" : "1rem", color: "#ffffff", textAlign: isMobile ? "center" : "left", wordBreak: "break-word", lineHeight: 1.3 }}>{c.title}</h4>
                         </div>
                       </div>
                     );
