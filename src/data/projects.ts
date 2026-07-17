@@ -54,7 +54,7 @@ export const projects: Project[] = [
   },
   {
     title: "Qualitysoft Cia. Ltda.",
-    description: "Implementé convenciones de mensajes de commit (basadas en estándares como Conventional Commits) para mejorar la mantenibilidad del repositorio y facilitar la integración continua. Actué de forma híbrida entre QA y Desarrollo, asegurando entregas sin errores mediante la resolución de bugs y la implementación de componentes funcionales.",
+    description: "Responsable del QA interno mediante revisión técnica de las nuevas funcionalidades o bugs a corregir por el equipo de tecnología. Al mismo tiempo me involucré como programador en el desarrollo de nuevas funcionalidades para el sistema. Dirigí y coordiné las actividades del área de desarrollo, liderando la planificación de tareas, la gestión de sprints en Jira y la sincronización del equipo para asegurar despliegues exitosos.",
     year: "Ene 2026",
   },
 ];

@@ -21,7 +21,7 @@ function App() {
           name="Erick Ramírez"
           role="Ingeniero de Software 🧑🏻‍💻"
           bio={
-            "Ingeniero de Software con una apasionada inclinación hacia todo lo relacionado con la tecnología. Comprometido con la búsqueda constante de aprendizaje para perfeccionar mis habilidades en programación y edición de video. Actualmente me encuentro aprendiendo desarrollo web Front-End, UX y UI."
+            "Ingeniero de Software, apasionado por la tecnología, la programación y el desarrollo web. Enfocado en fusionar creatividad con eficiencia técnica para diseñar soluciones innovadoras que mejoren la experiencia del usuario. Con experiencia en desarrollo frontend, especialmente en React, y un fuerte compromiso con el aprendizaje continuo para potenciar mis habilidades y aportar valor en proyectos tecnológicos"
           }
           accentColor="#00a9e2"
           projects={projects}

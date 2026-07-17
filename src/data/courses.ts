@@ -7,6 +7,7 @@ import logoAcademia from "../assets/Logo-Academia.png";
 import alaimo from "../assets/Alaimo Labs.png";
 import hplife from "../assets/hplife.png";
 import awsEducate from "../assets/aws_educate.png";
+import aprendeorg from "../assets/FundacionCS.png";
 
 export const courses = [
   { title: "Ciberseguridad en el Teletrabajo", img: incibe },
@@ -20,4 +21,5 @@ export const courses = [
   { title: "Fundamentos de Scrum", img: alaimo },
   { title: "HP LIFE - IA para principiantes", img: hplife },
   { title: "Amazon Educate - Introducción a la Nube 101", img: awsEducate },
+  { title: "Fundación Carlos Slim - Curador de datos", img: aprendeorg },
 ];
