@@ -5,6 +5,7 @@ interface Props {
 export function ContactPanel({ contactEmail }: Props) {
   return (
     <div
+      id="contact"
       style={{
         display: "flex",
         flexDirection: "column",

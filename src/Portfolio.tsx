@@ -76,6 +76,18 @@ export function Portfolio({
                   <a
                     key={item.label}
                     href={item.href ?? "#"}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (item.href === "#home") {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      } else {
+                        const target = document.querySelector(item.href ?? "");
+                        if (target) {
+                          const y = target.getBoundingClientRect().top + window.scrollY;
+                          window.scrollTo({ top: y, behavior: "smooth" });
+                        }
+                      }
+                    }}
                     style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>
                     {item.label}
                   </a>
@@ -91,7 +103,7 @@ export function Portfolio({
 
       {/* Bio */}
       <Scene duration="200vh">
-        <div style={sectionCenter}>
+        <div id="about" style={sectionCenter}>
           <div style={{ maxWidth: 750, fontSize: "20px" }}>
             <TextReveal mode="word" at={0.05} span={0.85} color="#ffffff" dimColor="rgba(255,255,255,0.1)">
               {bio}

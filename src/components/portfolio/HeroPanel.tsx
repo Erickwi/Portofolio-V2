@@ -22,7 +22,7 @@ export const HeroPanel = memo(function HeroPanel({ name, role, accentColor = "#0
     <Suspense fallback={<div style={{ height: "100vh" }} />}>
       <Scene duration="150vh">
         {(progress) => (
-          <div style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
+          <div id="home" style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
             <Parallax speed={0.3}>
               <div
                 style={{
