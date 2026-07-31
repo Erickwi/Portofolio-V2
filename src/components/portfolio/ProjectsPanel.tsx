@@ -152,6 +152,10 @@ export const ProjectsPanel = memo(function ProjectsPanel({ projects, accentColor
                                 lineHeight: 1.6,
                                 margin: "0 0 12px",
                                 maxWidth: 720,
+                                display: "-webkit-box",
+                                WebkitLineClamp: 4,
+                                WebkitBoxOrient: "vertical",
+                                overflow: "hidden",
                               }}>
                               {project.description}
                             </p>
@@ -163,8 +167,8 @@ export const ProjectsPanel = memo(function ProjectsPanel({ projects, accentColor
                                   alt={project.title}
                                   style={{
                                     width: "100%",
-                                    maxWidth: 280,
-                                    maxHeight: 360,
+                                    maxWidth: 240,
+                                    maxHeight: 180,
                                     height: "auto",
                                     objectFit: "cover",
                                     borderRadius: 8,

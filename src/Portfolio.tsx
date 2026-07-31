@@ -1,7 +1,9 @@
 import { type CSSProperties } from "react";
-import { Scene, TextReveal, Progress, StickyHeader } from "react-kino";
+import { Scene, TextReveal, Progress } from "react-kino";
+import { Header } from "./components/portfolio/Header";
 import { HeroPanel } from "./components/portfolio/HeroPanel";
 import { ProjectsPanel } from "./components/portfolio/ProjectsPanel";
+import { CreatedProjectsPanel } from "./components/portfolio/CreatedProjectsPanel";
 import SkillsPanel from "./components/portfolio/SkillsPanel";
 import { TechMarquee } from "./components/portfolio/TechMarquee";
 import { CoursesPanel } from "./components/portfolio/CoursesPanel";
@@ -13,6 +15,7 @@ interface PortfolioProps {
   bio: string;
   accentColor?: string;
   projects?: Array<{ title: string; description: string; year?: string | number; tags?: string[] }>;
+  createdProjects?: Array<{ title: string; description: string; year?: string | number; image?: string; tags?: string[] }>;
   skills?: string[];
   contactEmail?: string;
   navItems?: Array<{ label: string; href?: string }>;
@@ -26,6 +29,7 @@ export function Portfolio({
   bio,
   accentColor = "#00a9e2",
   projects = [],
+  createdProjects = [],
   skills = [],
   contactEmail,
   navItems,
@@ -54,49 +58,7 @@ export function Portfolio({
     <div style={baseStyle}>
       <Progress color={accentColor} position="top" />
 
-      <StickyHeader
-        threshold={40}
-        background="rgba(0, 0, 0, 0.72)"
-        blur
-        style={{ borderBottom: "0.5px solid rgba(255,255,255,0.08)" }}>
-        <div
-          style={{
-            maxWidth: 980,
-            margin: "0 auto",
-            height: 48,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "0 24px",
-          }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-            {navItems && navItems.length > 0 && (
-              <nav style={{ display: "flex", gap: 20 }}>
-                {navItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href ?? "#"}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (item.href === "#home") {
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      } else {
-                        const target = document.querySelector(item.href ?? "");
-                        if (target) {
-                          const y = target.getBoundingClientRect().top + window.scrollY;
-                          window.scrollTo({ top: y, behavior: "smooth" });
-                        }
-                      }
-                    }}
-                    style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>
-                    {item.label}
-                  </a>
-                ))}
-              </nav>
-            )}
-          </div>
-        </div>
-      </StickyHeader>
+      <Header navItems={navItems} />
 
       {/* Hero */}
       <HeroPanel name={name} role={role} accentColor={accentColor} showScrollHint={showScrollHint} />
@@ -120,6 +82,9 @@ export function Portfolio({
 
       {/* Projects timeline simplified */}
       <ProjectsPanel projects={projects} accentColor={accentColor} />
+
+      {/* Projects I created (horizontal scroll) */}
+      <CreatedProjectsPanel projects={createdProjects} accentColor={accentColor} />
 
       {/* Skills (marquee + horizontal panels) */}
       <SkillsPanel skills={skills} marqueeItems={marqueeItems} />

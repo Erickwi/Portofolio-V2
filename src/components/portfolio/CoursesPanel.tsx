@@ -24,22 +24,22 @@ export const CoursesPanel = memo(function CoursesPanel() {
                   style={{
                     maxWidth: 1080,
                     margin: "48px auto 0",
-                    padding: "40px clamp(8px, 4vw, 48px)",
+                    padding: isMobile ? "20px clamp(8px, 4vw, 48px)" : "40px clamp(8px, 4vw, 48px)",
                     overflowX: "hidden",
                     boxSizing: "border-box",
                     scrollMarginTop: "clamp(140px, 14vh, 220px)",
                   }}>
-                  <div style={{ textAlign: "center", marginBottom: 18 }}>
-                    <h3 style={{ margin: 0, color: "#fff", fontSize: "2.25rem" }}>Cursos</h3>
+                  <div style={{ textAlign: "center", marginBottom: isMobile ? 10 : 18 }}>
+                    <h3 style={{ margin: 0, color: "#fff", fontSize: isMobile ? "1.5rem" : "2.25rem" }}>Cursos</h3>
                   </div>
 
                   <div
                     style={{
                       display: "grid",
-                      gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(auto-fit, minmax(220px, 1fr))",
-                      gap: isMobile ? 6 : 20,
-                      alignItems: "stretch",
-                    }}>
+                    gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(auto-fit, minmax(220px, 1fr))",
+                    gap: isMobile ? 6 : 20,
+                    alignItems: "stretch",
+                  }}>
                     {courses.map((c, i) => {
                       const visible = i <= active;
                       return (
@@ -49,8 +49,8 @@ export const CoursesPanel = memo(function CoursesPanel() {
                             background: "rgba(255,255,255,0.05)",
                             border: "1px solid rgba(255,255,255,0.12)",
                             borderRadius: 10,
-                            minHeight: isMobile ? 80 : 160,
-                            padding: isMobile ? 8 : 16,
+                            minHeight: isMobile ? 64 : 160,
+                            padding: isMobile ? 6 : 16,
                             boxShadow: i === active ? `0 8px 30px rgba(0,0,0,0.6)` : "none",
                             transform: visible ? "none" : "translateY(18px)",
                             transition: "all 0.45s ease",
@@ -62,7 +62,7 @@ export const CoursesPanel = memo(function CoursesPanel() {
                               src={c.img}
                               alt={c.title}
                               loading="lazy"
-                              style={{ width: isMobile ? 40 : 64, height: isMobile ? 40 : 64, objectFit: "contain", borderRadius: 8 }}
+                              style={{ width: isMobile ? 32 : 64, height: isMobile ? 32 : 64, objectFit: "contain", borderRadius: 8 }}
                             />
                             <h4 style={{ margin: 0, fontSize: isMobile ? "0.75rem" : "1rem", color: "#ffffff", textAlign: isMobile ? "center" : "left", wordBreak: "break-word", lineHeight: 1.3 }}>{c.title}</h4>
                           </div>

@@ -1,7 +1,7 @@
 import "./App.css";
 import Portfolio from "./Portfolio";
 import { Footer } from "./components/Footer";
-import { projects } from "./data/projects";
+import { projects, createdProjects } from "./data/projects";
 
 const skills = ["Gestión de proyectos", "Edición de video", "Gestión de redes sociales", "Desarrollo Web Front-End"];
 
@@ -10,6 +10,7 @@ const navItems = [
   { label: "Sobre mí", href: "#about" },
   { label: "Cursos", href: "#courses" },
   { label: "Experiencia", href: "#experience" },
+  { label: "Proyectos", href: "#projects" },
   { label: "Contacto", href: "#contact" },
 ];
 
@@ -25,6 +26,7 @@ function App() {
           }
           accentColor="#00a9e2"
           projects={projects}
+          createdProjects={createdProjects}
           skills={skills}
           contactEmail="electrictiesto@gmail.com"
           navItems={navItems}

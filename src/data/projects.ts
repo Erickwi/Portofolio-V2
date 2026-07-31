@@ -9,6 +9,7 @@ export interface Project {
   description: string;
   year?: string | number;
   image?: string;
+  tags?: string[];
 }
 
 export const projects: Project[] = [
@@ -17,18 +18,6 @@ export const projects: Project[] = [
     description: "Lideré y coordiné el desarrollo completo de la página web, desde la conceptualización hasta la implementación.",
     year: "Mar 2020",
     image: logoBocaditos,
-  },
-  {
-    title: "InnovaGenius",
-    description: "Proyecto Inventario Inmobiliaria",
-    year: "Ago 2022",
-    image: innovaGenius,
-  },
-  {
-    title: "Ponte Pilas",
-    description: "Proyecto de gestión de contenido (Ponte Pilas)",
-    year: "Mar 2023",
-    image: pontePilasImg,
   },
   {
     title: "Tours Ecuador",
@@ -47,14 +36,47 @@ export const projects: Project[] = [
     year: "Sep 2024",
   },
   {
-    title: "CashFlow",
-    description: "Aplicación web hecha en React con Express.js para cierre de caja de una casa de cambios",
-    year: "Sep 2025",
-    image: cashflowImg,
-  },
-  {
     title: "Qualitysoft Cia. Ltda.",
     description: "Responsable del QA interno mediante revisión técnica de las nuevas funcionalidades o bugs a corregir por el equipo de tecnología. Al mismo tiempo me involucré como programador en el desarrollo de nuevas funcionalidades para el sistema. Dirigí y coordiné las actividades del área de desarrollo, liderando la planificación de tareas, la gestión de sprints en Jira y la sincronización del equipo para asegurar despliegues exitosos.",
     year: "Ene 2026",
+  },
+];
+
+export const createdProjects: Project[] = [
+  {
+    title: "Ponte Pilas",
+    description: "Proyecto personal de estudio para el examen EAES: cuestionarios de física y matemática, y un simulador muy parecido al real.",
+    year: "Marzo 2020",
+    image: pontePilasImg,
+    tags: ["HTML", "CSS", "JavaScript", "React"],
+  },
+  {
+    title: "Bocaditos La Guaragua",
+    description: "Página web para conocer todo lo que ofrece, tanto bocaditos de sal como de dulce.",
+    year: "Agosto 2021",
+    image: logoBocaditos,
+    tags: ["HTML", "CSS", "JavaScript"],
+  },
+  {
+    title: "InnovaGenius",
+    description: "Proyecto de inventario para una inmobiliaria: creación de nuevo inventario, control de stock y más.",
+    year: "Ago 2022",
+    image: innovaGenius,
+    tags: ["PHP", "HTML", "CSS", "JavaScript", "jQuery"],
+  },
+  
+  {
+    title: "Tours Ecuador",
+    description: "Página web de tours: lugares que ofertan, disponibilidad e itinerario de actividades de cada tour en una línea de tiempo.",
+    year: "Feb 2023",
+    image: toursEcuadorImg,
+    tags: ["HTML", "CSS", "JavaScript", "PHP"],
+  },
+  {
+    title: "CashFlow",
+    description: "Aplicación web para el cierre de caja de una casa de cambios.",
+    year: "Sep 2025",
+    image: cashflowImg,
+    tags: ["React", "Express", "Node.js"],
   },
 ];
