@@ -1,4 +1,5 @@
 import { lazy, memo, Suspense } from "react";
+import { useIsMobile } from "../../hooks/useBreakpoint";
 
 const Scene = lazy(() =>
   import("react-kino").then((m) => ({ default: m.Scene }))
@@ -18,6 +19,8 @@ interface Props {
 }
 
 export const ProjectsPanel = memo(function ProjectsPanel({ projects, accentColor = "#00a9e2" }: Props) {
+  const isMobile = useIsMobile();
+
   return (
     <>
       {projects.length > 0 && (
@@ -32,14 +35,17 @@ export const ProjectsPanel = memo(function ProjectsPanel({ projects, accentColor
                 <section
                   id="experience"
                   style={{
-                    height: "100vh",
+                    height: isMobile ? "auto" : "100vh",
+                    minHeight: isMobile ? "100vh" : undefined,
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "flex-start",
-                    /* top padding so the section appears lower when navigated to */
-                    padding: "clamp(180px, 18vh, 260px) clamp(16px, 4vw, 48px) 0",
-                    /* ensure anchor-scroll positions this section below sticky header */
-                    scrollMarginTop: "clamp(180px, 18vh, 260px)",
+                    justifyContent: isMobile ? "flex-start" : "flex-start",
+                    padding: isMobile
+                      ? "clamp(80px, 10vh, 120px) clamp(16px, 4vw, 48px) clamp(40px, 6vh, 80px)"
+                      : "clamp(180px, 18vh, 260px) clamp(16px, 4vw, 48px) 0",
+                    scrollMarginTop: isMobile
+                      ? "clamp(80px, 10vh, 120px)"
+                      : "clamp(180px, 18vh, 260px)",
                     maxWidth: 1080,
                     margin: "0 auto",
                   }}>
@@ -56,33 +62,41 @@ export const ProjectsPanel = memo(function ProjectsPanel({ projects, accentColor
 
                   <div style={{ display: "flex", gap: "clamp(20px, 4vw, 80px)" }}>
                     <div style={{ width: "clamp(80px, 22vw, 180px)", flexShrink: 0, position: "relative" }}>
-                      <div
-                        style={{
-                          position: "absolute",
-                          left: "clamp(6px, 1.2vw, 10px)",
-                          top: "clamp(6px, 1.2vw, 10px)",
-                          bottom: "clamp(6px, 1.2vw, 10px)",
-                          width: 2,
-                          background: "rgba(255,255,255,0.06)",
-                          borderRadius: 1,
-                        }}>
-                        <div
-                          style={{
-                            width: "100%",
-                            height: `${fill}%`,
-                            background: accentColor,
-                            transition: "height 0.4s ease-out",
-                            borderRadius: 1,
-                          }}
-                        />
-                      </div>
+                      {(() => {
+                        const dotSize = 18;
+                        const dotGap = isMobile ? 20 : 0;
+                        const timelineH = isMobile ? (n - 1) * (dotSize + dotGap) : 300;
+                        return (
+                          <div
+                            style={{
+                              position: "absolute",
+                              left: "clamp(6px, 1.2vw, 10px)",
+                              top: "clamp(6px, 1.2vw, 10px)",
+                              height: timelineH,
+                              width: 2,
+                              background: "rgba(255,255,255,0.06)",
+                              borderRadius: 1,
+                            }}>
+                            <div
+                              style={{
+                                width: "100%",
+                                height: `${fill}%`,
+                                background: accentColor,
+                                transition: "height 0.4s ease-out",
+                                borderRadius: 1,
+                              }}
+                            />
+                          </div>
+                        );
+                      })()}
 
                       <div
                         style={{
                           display: "flex",
                           flexDirection: "column",
                           justifyContent: "space-between",
-                          height: 300,
+                          height: isMobile ? "auto" : 300,
+                          gap: isMobile ? 20 : 0,
                         }}>
                         {projects.map((project, i) => (
                           <div
@@ -120,12 +134,12 @@ export const ProjectsPanel = memo(function ProjectsPanel({ projects, accentColor
                       </div>
                     </div>
 
-                    <div style={{ flex: 1, position: "relative", minHeight: 300 }}>
+                    <div style={{ flex: 1, position: "relative", minHeight: isMobile ? "auto" : 300 }}>
                       {projects.map((project, i) => (
                         <div
                           key={i}
                           style={{
-                            position: "absolute",
+                            position: i === active && isMobile ? "relative" : "absolute",
                             top: 0,
                             left: 0,
                             right: 0,
@@ -152,10 +166,6 @@ export const ProjectsPanel = memo(function ProjectsPanel({ projects, accentColor
                                 lineHeight: 1.6,
                                 margin: "0 0 12px",
                                 maxWidth: 720,
-                                display: "-webkit-box",
-                                WebkitLineClamp: 4,
-                                WebkitBoxOrient: "vertical",
-                                overflow: "hidden",
                               }}>
                               {project.description}
                             </p>
