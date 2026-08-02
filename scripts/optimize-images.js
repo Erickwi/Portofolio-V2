@@ -1,9 +1,7 @@
 import sharp from 'sharp';
-import { readdir, stat, rename, unlink } from 'fs/promises';
-import { join, extname } from 'path';
+import { readdir, stat, writeFile, unlink, rename } from 'fs/promises';
+import { join, extname, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import { tmpdir } from 'os';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -13,15 +11,20 @@ const SUPPORTED_EXT = ['.png', '.jpg', '.jpeg'];
 const QUALITY = 80;
 
 async function getImages(dir) {
-  const entries = await readdir(dir);
+  const entries = await readdir(dir, { withFileTypes: true });
   const files = [];
 
   for (const entry of entries) {
-    const fullPath = join(dir, entry);
-    const ext = extname(entry).toLowerCase();
+    const fullPath = join(dir, entry.name);
 
-    if (SUPPORTED_EXT.includes(ext)) {
-      files.push(fullPath);
+    if (entry.isDirectory()) {
+      const subFiles = await getImages(fullPath);
+      files.push(...subFiles);
+    } else {
+      const ext = extname(entry.name).toLowerCase();
+      if (SUPPORTED_EXT.includes(ext)) {
+        files.push(fullPath);
+      }
     }
   }
 
@@ -38,7 +41,7 @@ async function optimizeImage(filePath) {
   const before = (await stat(filePath)).size;
   const ext = extname(filePath).toLowerCase();
   const filename = filePath.split(/[\\/]/).pop();
-  const tmpFile = join(tmpdir(), `optimize-${Date.now()}${ext}`);
+  const tmpFile = join(dirname(filePath), `.opt-${Date.now()}${ext}`);
 
   let pipeline = sharp(filePath);
 
@@ -49,6 +52,7 @@ async function optimizeImage(filePath) {
   }
 
   await pipeline.toFile(tmpFile);
+  await unlink(filePath);
   await rename(tmpFile, filePath);
 
   const after = (await stat(filePath)).size;
