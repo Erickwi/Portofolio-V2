@@ -15,7 +15,15 @@ interface PortfolioProps {
   bio: string;
   accentColor?: string;
   projects?: Array<{ title: string; description: string; year?: string | number; tags?: string[] }>;
-  createdProjects?: Array<{ title: string; description: string; year?: string | number; image?: string; tags?: string[] }>;
+  createdProjects?: Array<{
+    title: string;
+    description: string;
+    year?: string | number;
+    image?: string;
+    beforeImage?: string;
+    afterImage?: string;
+    tags?: string[];
+  }>;
   skills?: string[];
   contactEmail?: string;
   navItems?: Array<{ label: string; href?: string }>;

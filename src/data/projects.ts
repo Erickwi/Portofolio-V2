@@ -3,6 +3,7 @@ import toursEcuadorExp from "../assets/iconToursEcuador.png";
 import logoBocaditos from "../assets/proyectos/Proyecto_bocaditos.png";
 import innovaGenius from "../assets/proyectos/Proyecto_innovaGenius.png";
 import pontePilasImg from "../assets/proyectos/Proyect_pilas.png";
+import pontePilasNewImg from "../assets/proyectos/Proyecto_pilas_2.png";
 import toursEcuadorImg from "../assets/proyectos/Proyecto_tours_ecuador.png";
 import cashflowImg from "../assets/proyectos/Proyecto_casa_de_cambios.png";
 
@@ -11,6 +12,8 @@ export interface Project {
   description: string;
   year?: string | number;
   image?: string;
+  beforeImage?: string;
+  afterImage?: string;
   tags?: string[];
 }
 
@@ -55,6 +58,8 @@ export const createdProjects: Project[] = [
       "Proyecto personal de estudio para el examen EAES: cuestionarios de física, matemática, química, historia y un simulador muy parecido al real. Actualmente estoy realizando una migración completamente a React.",
     year: "Marzo 2020",
     image: pontePilasImg,
+    beforeImage: pontePilasImg,
+    afterImage: pontePilasNewImg,
     tags: ["HTML", "CSS", "JavaScript", "React"],
   },
   {

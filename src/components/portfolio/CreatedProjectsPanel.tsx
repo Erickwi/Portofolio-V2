@@ -1,11 +1,14 @@
-import { lazy, memo, Suspense } from "react";
+import { lazy, memo, Suspense, type CSSProperties } from "react";
 
 const Scene = lazy(() => import("react-kino").then((m) => ({ default: m.Scene })));
+const CompareSlider = lazy(() => import("react-kino").then((m) => ({ default: m.CompareSlider })));
 
 interface Project {
   title: string;
   description: string;
   image?: string;
+  beforeImage?: string;
+  afterImage?: string;
   year?: string | number;
   tags?: string[];
 }
@@ -32,6 +35,96 @@ function getTechColor(tag: string): string {
     if (name.toLowerCase() === normalized) return color;
   }
   return "#ffffff";
+}
+
+function BeforeAfterImage({ before, after, title }: { before: string; after: string; title: string }) {
+  const imgStyle: CSSProperties = {
+    width: "100%",
+    height: "38vh",
+    minHeight: 260,
+    objectFit: "contain",
+    objectPosition: "center top",
+    display: "block",
+    userSelect: "none",
+    pointerEvents: "none",
+    backgroundColor: "#0a0a0a",
+  };
+
+  const badgeBase: CSSProperties = {
+    position: "absolute",
+    top: 12,
+    zIndex: 3,
+    pointerEvents: "none",
+    fontSize: "0.75rem",
+    fontWeight: 600,
+    padding: "5px 12px",
+    borderRadius: 999,
+    boxShadow: "0 0 8px rgba(255,255,255,0.55)",
+    backdropFilter: "blur(8px)",
+    WebkitBackdropFilter: "blur(8px)",
+  };
+
+  // Mismo tono que los badges de tecnologías de abajo
+  const anteriorColor = "#ffffff";
+  const nuevaColor = "#7BE7FF"; // color de React en techColors
+
+  return (
+    <div style={{ marginBottom: 12 }}>
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          borderRadius: 12,
+          overflow: "hidden",
+          boxShadow: "0 6px 24px rgba(0,0,0,0.4)",
+          background: "#111",
+        }}>
+        <CompareSlider
+          before={
+            <img src={after} alt={`${title} - nueva versión React`} draggable={false} loading="lazy" style={imgStyle} />
+          }
+          after={
+            <img src={before} alt={`${title} - versión anterior`} draggable={false} loading="lazy" style={imgStyle} />
+          }
+          initialPosition={0.5}
+          ariaLabel={`Comparar antes y después de ${title}`}
+        />
+        {/* Invertido a pedido: izquierda = anterior (old), derecha = nueva (new).
+            react-kino muestra el "after" a la izquierda y el "before" a la derecha,
+            por eso pasamos before=nueva y after=anterior. */}
+        <span
+          style={{
+            ...badgeBase,
+            left: 12,
+            color: anteriorColor,
+            border: `1px solid ${anteriorColor}AA`,
+            background: "rgba(5,5,5,0.72)",
+          }}>
+          Anterior
+        </span>
+        <span
+          style={{
+            ...badgeBase,
+            right: 12,
+            color: nuevaColor,
+            border: `1px solid ${nuevaColor}`,
+            background: "rgba(5,5,5,0.78)",
+            textShadow: "0 0 12px rgba(123,231,255,0.6)",
+          }}>
+          Nueva
+        </span>
+      </div>
+      <p
+        style={{
+          margin: "10px 0 12px",
+          fontSize: "0.8rem",
+          color: "rgba(255,255,255,0.55)",
+          fontWeight: 600,
+        }}>
+        Arrastra ◀▶ para comparar la migración a React/NextJs
+      </p>
+    </div>
+  );
 }
 
 export const CreatedProjectsPanel = memo(function CreatedProjectsPanel({ projects, accentColor = "#00a9e2" }: Props) {
@@ -88,21 +181,29 @@ export const CreatedProjectsPanel = memo(function CreatedProjectsPanel({ project
                             boxSizing: "border-box",
                           }}>
                           <div style={{ maxWidth: 720, width: "100%", textAlign: "center" }}>
-                            {project.image && (
-                              <img
-                                src={project.image}
-                                alt={project.title}
-                                loading="lazy"
-                                style={{
-                                  width: "100%",
-                                  maxHeight: "38vh",
-                                  height: "auto",
-                                  objectFit: "contain",
-                                  borderRadius: 12,
-                                  boxShadow: "0 6px 24px rgba(0,0,0,0.4)",
-                                  marginBottom: 24,
-                                }}
+                            {project.beforeImage && project.afterImage ? (
+                              <BeforeAfterImage
+                                before={project.beforeImage}
+                                after={project.afterImage}
+                                title={project.title}
                               />
+                            ) : (
+                              project.image && (
+                                <img
+                                  src={project.image}
+                                  alt={project.title}
+                                  loading="lazy"
+                                  style={{
+                                    width: "100%",
+                                    maxHeight: "38vh",
+                                    height: "auto",
+                                    objectFit: "contain",
+                                    borderRadius: 12,
+                                    boxShadow: "0 6px 24px rgba(0,0,0,0.4)",
+                                    marginBottom: 24,
+                                  }}
+                                />
+                              )
                             )}
 
                             <h4 style={{ margin: "0 0 6px", color: "#f5f5f7", fontSize: "clamp(1.5rem, 3vw, 2rem)" }}>
